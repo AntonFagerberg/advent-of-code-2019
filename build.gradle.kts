@@ -14,10 +14,16 @@ plugins {
 tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions.jvmTarget = "11"
 }
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
     implementation(kotlin("stdlib"))
+    testImplementation("io.kotlintest:kotlintest-runner-junit5:3.3.0")
 }
