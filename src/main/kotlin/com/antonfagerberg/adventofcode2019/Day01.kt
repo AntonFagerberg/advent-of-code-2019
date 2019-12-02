@@ -1,4 +1,4 @@
-package day01
+package com.antonfagerberg.adventofcode2019
 
 object Day01 {
     fun calculateFuelPart1(value: Int): Int = value / 3 - 2

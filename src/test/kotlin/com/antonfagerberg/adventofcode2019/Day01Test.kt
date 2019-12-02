@@ -1,4 +1,4 @@
-package day01
+package com.antonfagerberg.adventofcode2019
 
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
