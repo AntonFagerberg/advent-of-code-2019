@@ -14,7 +14,7 @@ class Day04Test : StringSpec({
 
     "part 2" {
         val input = Files.readAllLines(Path.of(javaClass.classLoader.getResource("input_04").toURI()))
-        Day04.solve(input[0], Day04::validatePart2) shouldBe 511
+        Day04.solve(input[0], Day04::validatePart2) shouldBe 316
     }
 
 })
