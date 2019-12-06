@@ -6,7 +6,7 @@ import java.nio.file.Files
 import java.nio.file.Path
 
 class Day06Test : StringSpec({
-    val input = Files.readAllLines(Path.of(javaClass.classLoader.getResource("input_06").toURI()))
+    val input = Files.readAllLines(Path.of(javaClass.classLoader.getResource("input_06")!!.toURI()))
 
     "part 1 example 1" {
         val example = "COM)B\n" +

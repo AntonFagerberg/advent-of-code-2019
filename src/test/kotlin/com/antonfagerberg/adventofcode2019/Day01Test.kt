@@ -7,7 +7,7 @@ import java.nio.file.Path
 
 class Day01Test : StringSpec({
 
-    val input = Files.readAllLines(Path.of(javaClass.classLoader.getResource("input_01").toURI())).map { it.toInt() }
+    val input = Files.readAllLines(Path.of(javaClass.classLoader.getResource("input_01")!!.toURI())).map { it.toInt() }
 
     "as mass of 12 (part 1)" {
         Day01.calculateFuelPart1(12) shouldBe 2

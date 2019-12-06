@@ -8,7 +8,7 @@ import java.nio.file.Path
 
 class Day02Test : StringSpec({
 
-    val input = Files.readAllLines(Path.of(javaClass.classLoader.getResource("input_02").toURI())).get(0).split(",").map { it.toInt() }
+    val input = Files.readAllLines(Path.of(javaClass.classLoader.getResource("input_02")!!.toURI()))[0].split(",").map { it.toInt() }
 
     "run example 0 (part 1)" {
         Day02.run(mutableListOf(1, 9, 10, 3, 2, 3, 11, 0, 99, 30, 40, 50)) shouldBe mutableListOf(3500, 9, 10, 70, 2, 3, 11, 0, 99, 30, 40, 50)

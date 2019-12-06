@@ -7,7 +7,7 @@ import java.nio.file.Path
 
 class Day03Test : StringSpec({
 
-    val input = Files.readAllLines(Path.of(javaClass.classLoader.getResource("input_03").toURI()))
+    val input = Files.readAllLines(Path.of(javaClass.classLoader.getResource("input_03")!!.toURI()))
 
     "part1 example 0" {
         Day03.part1(

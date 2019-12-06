@@ -6,14 +6,13 @@ import java.nio.file.Files
 import java.nio.file.Path
 
 class Day04Test : StringSpec({
+    val input = Files.readAllLines(Path.of(javaClass.classLoader.getResource("input_04")!!.toURI()))
 
     "part 1" {
-        val input = Files.readAllLines(Path.of(javaClass.classLoader.getResource("input_04").toURI()))
         Day04.solve(input[0], Day04::validatePart1) shouldBe 511
     }
 
     "part 2" {
-        val input = Files.readAllLines(Path.of(javaClass.classLoader.getResource("input_04").toURI()))
         Day04.solve(input[0], Day04::validatePart2) shouldBe 316
     }
 
