@@ -7,9 +7,6 @@ object Day07 {
         val operation = instruction % 100
         val paramMode1 = instruction / 100 % 10 == 1
         val paramMode2 = instruction / 1000 % 10 == 1
-        val paramMode3 = instruction / 10000 % 10 == 1
-
-        if (paramMode3) throw java.lang.RuntimeException("!?")
 
         return when (operation) {
             1, 2 -> {
