@@ -1,5 +1,6 @@
 package com.antonfagerberg.adventofcode2019
 
+import java.lang.Exception
 import java.lang.IllegalStateException
 import java.lang.IndexOutOfBoundsException
 
@@ -16,19 +17,27 @@ object Day13 {
         val program = Day09.parse(input)
         program[0] = 2
 
-        val computer = Day09.Computer(program)
+        var computer = Day09.Computer(program)
         val screen = mutableMapOf<Pair<Long, Long>, Char>()
         var score = 0L
 
+        data class Record(val program: Map<Long, Long>, val score: Long, val position: Long)
+
+//        var history = listOf<Record>()
+        var blockCount = 1
+
         while (true) {
+            blockCount = 0
+            var paddleX = 0L
+            var ballX = 0L
+
             generateSequence {
                 try {
                     computer.getOutput()
                 } catch (e: IndexOutOfBoundsException) {
                     null
                 }
-            }
-                    .windowed(3, 3)
+            }.windowed(3, 3)
                     .forEach {
                         if (it[0] == -1L && it[1] == 0L) {
                             score = it[2]
@@ -37,9 +46,13 @@ object Day13 {
                                     when (it[2]) {
                                         0L -> ' '
                                         1L -> '█'
-                                        2L -> '░'
-                                        3L -> '█'
-                                        4L -> '●'
+                                        2L -> { blockCount += 1; '░' }
+                                        3L -> {
+                                            paddleX = it[0]; '^'
+                                        }
+                                        4L -> {
+                                            ballX = it[0]; '●'
+                                        }
                                         else -> throw IllegalStateException()
 
                                     }
@@ -52,6 +65,7 @@ object Day13 {
             val minY = screen.keys.map { it.second }.min()!!
             val maxY = screen.keys.map { it.second }.max()!!
 
+
             val frame =
                     (minY..maxY).fold("") { accY, y ->
                         (minX..maxX).fold(accY) { accX, x ->
@@ -59,14 +73,41 @@ object Day13 {
                         } + "\n"
                     }
 
-            println("Score: $score")
-            println("Program: mutableMapOf(${program.toList().map { (k, v) -> "Pair(${k}L, ${v}L)"}.joinToString(",")})")
-            println("Position: ${computer.position}")
+//            var cont = false
+//            while (!cont) {
+//            println("Score: $score")
+//            println("Program: mutableMapOf(${program.toList().map { (k, v) -> "Pair(${k}L, ${v}L)" }.joinToString(",")})")
+//            println("Position: ${computer.position}")
             println(frame)
+            println(score)
             println("")
+//            println(ballX)
+//            println(paddleX)
 
-            computer.addInput(readLine()!!.toLong())
+            computer.addInput(
+                    if (ballX < paddleX) -1L
+                    else if (ballX > paddleX) 1L
+                    else 0L
+            )
+
+//            readLine()!!
+
+
+//                history = (history + (Record(program.toMap(), score, computer.position))).takeLast(10)
+//
+//
+//                try {
+//                    computer.addInput(readLine()!!.toLong())
+//                    cont = true
+//                } catch (e: Exception) {
+//                    val record = history[0]
+//                    computer = Day09.Computer(record.program.toMutableMap())
+//                    computer.position = record.position
+//                    score = record.score
+//                }
         }
+
+        println(score)
     }
 }
 
