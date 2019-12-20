@@ -2,7 +2,7 @@ package com.antonfagerberg.adventofcode2019
 
 object Day09 {
 
-    class Computer(private val program: MutableMap<Long, Long>) {
+    class Computer(val program: MutableMap<Long, Long>) {
         val input = mutableListOf<Long>()
 
         var position = 0L
